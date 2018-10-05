@@ -1,11 +1,20 @@
 import React from 'react';
-import ScoreBoard from './Scoreboard';
+import Scoreboard from './Scoreboard';
+import {connect} from 'react-redux';
 
-const Scorer = () => (
+const Scorer = (props) => (
   <div>
-    <ScoreBoard />
-
+    <Scoreboard game={props.game} score={props.score}/>
   </div>
 );
 
-export default Scorer;
+
+
+export const mapStateToProps = (state) => {
+    return {
+        score: state.scoreInformation,
+        game:state.gameInformation
+    }
+}
+
+export default connect(mapStateToProps)(Scorer)
